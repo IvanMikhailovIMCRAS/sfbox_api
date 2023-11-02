@@ -7,16 +7,18 @@ lat : name : bondlength : 3e-10
 sys : name : temperature : 298.15 
 sys : name : overflow_protection : false 
 sys : name : super_iteration : false 
-mon : H : freedom : free 
-mon : O : freedom : free 
+mon : W : freedom : free 
 mon : X : freedom : pinned 
 mon : X : pinned_range : 1 
 mon : A : freedom : free 
+mon : G : freedom : free 
 mol : water : freedom : solvent 
-mol : water : composition : (H)2(O)1 
-mol : polymer : freedom : restricted 
-mol : polymer : composition : (X)1(A)100 
-mol : polymer : theta : 5.0 
+mol : water : composition : (W)1 
+mol : pol : freedom : restricted 
+mol : pol : composition : (X)1(A)98(G)1 
+mol : pol : theta : 5.0 
 output : filename.pro : type : profiles 
-output : filename.pro : template : /home/imc/Lukiev/sfbox_api/sfbox_api/data/profile.tmp 
+output : filename.pro : template : /home/ohm/pcodes/sfbox_api/sfbox_api/data/profile.tmp 
+output : filename.kal : type : kal 
+output : filename.kal : template : /home/ohm/pcodes/sfbox_api/sfbox_api/data/kal.tmp 
 start

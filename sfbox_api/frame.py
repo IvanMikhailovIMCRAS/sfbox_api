@@ -63,5 +63,23 @@ class Frame:
                     result += f"mol : {mol.name} : {p[0]} : {str(p[1])} \n"
         result += "output : filename.pro : type : profiles \n"
         result += f"output : filename.pro : template : {TARGET_DIR}/profile.tmp \n"
+        result += "output : filename.kal : type : kal \n"
+        result += f"output : filename.kal : template : {TARGET_DIR}/kal.tmp \n"
         result += "start"
         return result
+
+    def run(self):
+        f = open(f"{TARGET_DIR}/info.txt", "w")
+        f.close()
+        f = open(f"{TARGET_DIR}/input.pro", "w")
+        f.close()
+        with open(f"{TARGET_DIR}/profile.tmp", "w") as f:
+            f.writelines("mol : * : phi : profile \n")
+            f.writelines("mon : * : phi : profile")
+        with open(f"{TARGET_DIR}/kal.tmp", "w") as f:
+            f.writelines("sys : * : free energ* : 1 \n")
+            f.writelines("mol : * : ln(G* : 1)")
+        with open(f"{TARGET_DIR}/input.in", "w") as f:
+            f.write(str(self))
+        os.chdir(TARGET_DIR)
+        os.system(f"{TARGET_DIR}/sfbox {TARGET_DIR}/input.in >> info.txt")
