@@ -1,0 +1,51 @@
+/home/ohm/pcodes/sfbox_api/sfbox_api/data/sfbox version 2.1.0.0 date: 2015-7913
+Checking inputfile /home/ohm/pcodes/sfbox_api/sfbox_api/data/input.in for errors
+no errors found in /home/ohm/pcodes/sfbox_api/sfbox_api/data/input.in
+Here we go...
+iterate 301
+NEWTON has been notified.
+Residual error:
+Your guess:i= 0  7.31229e-01  |g|=1.04592e+00
+hessian scaling: 1.33e+00
+i= 1  4.55891e-01  |g|=1.03690e+00  alpha=1.30e+00
+i= 2  4.63516e-01  |g|=9.92303e-01  alpha=1.00e+00
+i= 3  4.42723e-01  |g|=9.38881e-01  alpha=1.00e+00
+i= 4  4.24300e-01  |g|=1.03546e+00  alpha=1.00e+00
+i= 5  3.96385e-01  |g|=9.73368e-01  alpha=1.00e+00
+i= 6  3.73690e-01  |g|=9.35380e-01  alpha=1.00e+00
+i= 7  5.04630e-01  |g|=1.15470e+00  alpha=1.00e+00
+i= 8  3.53256e-01  |g|=9.79013e-01  alpha=1.00e+00
+i= 9  4.47731e-01  |g|=1.05495e+00  alpha=1.00e+00
+i= 10  3.56264e-01  |g|=7.66911e-01  alpha=1.00e+00
+i= 11  3.55090e-01  |g|=1.01783e+00  alpha=1.00e+00
+i= 12  4.82722e-01  |g|=1.00660e+00  alpha=1.00e+00
+i= 13  3.13339e-01  |g|=8.41262e-01  alpha=1.00e+00
+i= 14  3.76503e-01  |g|=1.01721e+00  alpha=1.00e+00
+i= 15  3.40064e-01  |g|=7.39943e-01  alpha=1.00e+00
+i= 16  4.19809e-01  |g|=1.09583e+00  alpha=1.00e+00
+i= 17  2.41718e-01  |g|=6.80877e-01  alpha=7.77e-01
+i= 18  3.79117e-01  |g|=8.67702e-01  alpha=1.00e+00
+i= 19  3.95757e-01  |g|=1.15376e+00  alpha=7.59e-01
+i= 20  2.12339e-01  |g|=6.21403e-01  alpha=1.00e+00
+i= 21  2.06791e-01  |g|=5.55852e-01  alpha=1.00e+00
+i= 22  1.77436e+00  |g|=6.22361e-01  alpha=1.00e+00
+i= 23  3.50434e-01  |g|=1.13125e+00  alpha=3.86e-02
+i= 24  3.55160e-01  |g|=9.75855e-01  alpha=3.05e-01
+i= 25  2.55122e-01  |g|=6.55126e-01  alpha=6.98e-01
+i= 26  3.26497e-01  |g|=1.19752e+00  alpha=1.00e+00
+i= 27  2.86735e-01  |g|=1.01414e+00  alpha=1.00e+00
+i= 28  2.21653e-01  |g|=5.84425e-01  alpha=1.00e+00
+i= 29  7.05090e-01  |g|=1.02573e+00  alpha=1.00e+00
+i= 30  3.40802e-01  |g|=1.17028e+00  alpha=2.39e-01
+i= 31  1.77827e-01  |g|=5.19351e-01  alpha=3.82e-01
+i= 32  3.09514e-01  |g|=1.10027e+00  alpha=1.00e+00
+i= 33  3.55368e-01  |g|=4.46617e-01  alpha=5.22e-01
+invalid numbers in gradient
+i= 34  -nan  |g|=-nan  alpha=4.74e-01
+Newton done.
+
+Some problem appears: 
+Hmm, seems like the equations produced an overflow
+
+Problem not solved.
+/home/ohm/pcodes/sfbox_api/sfbox_api/data/sfbox has finished.
