@@ -8,6 +8,7 @@ from pydantic import (BaseModel, ValidationError, field_validator,
 
 
 class Lat(BaseModel):
+    name: str = "name"
     gradients: Literal[1, 2] = 1
     geometry: Literal["flat", "cylindrical", "spherical"] = "flat"
     n_layers: Optional[int] = None
@@ -67,16 +68,11 @@ class Lat(BaseModel):
 
 
 if __name__ == "__main__":
-    input = {
-    "n_layers_x": 100,
-    "n_layers_y": 100,
-    "geometry": "flat",
-    "gradients": 2,
-    }
+    input = {"n_layers_x": 100, "n_layers_y": 100, "geometry": "flat", "gradients": 2}
     try:
         lattice = Lat(**input)
         for p in lattice:
             if p[1]:
-                print(f"lat : name : {p[0]} : {str(p[1])}")
+                print(f"lat : {lattice.name} : {p[0]} : {str(p[1])}")
     except ValidationError as err:
         print(err.json(indent=4))

@@ -1,50 +1,22 @@
-
-    lat : flat : n_layers : 150
-    lat : flat : geometry : flat
-    lat : flat : latticetype : standard
-    lat : flat : lambda : 0.16666666666666666667
-    lat : flat : lowerbound : surface
-    lat : flat : upperbound : mirror1
-    lat : flat : bondlength : 3e-10
-    
-    sys : ivan : temperature : 300
-
-    mon : solid : freedom : frozen
-    mon : solid : frozen_range : lowerbound
-    
-    mon : W : freedom : free
-    
-    mon : X: freedom : pinned
-    mon : X : pinned_range : 1
-    mon : X : valence : 0.2
-    
-    mon : A : freedom : free
-    mon : A : valence : 0.2
-    
-    mon : M : freedom : free
-    mon : M : valence : -1
-    
-    mon : P : freedom : free
-    mon : P : valence : 1
-    
-    mol : ionm : composition : (M)1
-    mol : ionm : freedom : neutralizer
-    
-    mol : ionp : composition : (P)1
-    mol : ionp : freedom : free
-    mol : ionp : phibulk : 1e-05
-    
-    mol : solvent : composition : (W)1
-    mol : solvent : freedom : solvent
-
-    mol : pol : composition : (X)1(A)30([(A)30])3(A)30
-    mol : pol : freedom : restricted
-    mol : pol : theta : 5.0
-
-    output : filename.pro : type : profiles
-    output : filename.pro : template : /home/ohm/pcodes/sfbox_api/sfbox_api/data/profile.tmp
-    
-    newton : mynew : tolerance : 1e-7
-
-    start    
-    
+lat : name : gradients : 1 
+lat : name : geometry : flat 
+lat : name : n_layers : 100 
+lat : name : lambda : 0.16666666666666666667 
+lat : name : latticetype : standard 
+lat : name : bondlength : 3e-10 
+sys : name : temperature : 298.15 
+sys : name : overflow_protection : false 
+sys : name : super_iteration : false 
+mon : H : freedom : free 
+mon : O : freedom : free 
+mon : X : freedom : pinned 
+mon : X : pinned_range : 1 
+mon : A : freedom : free 
+mol : water : freedom : solvent 
+mol : water : composition : (H)2(O)1 
+mol : polymer : freedom : restricted 
+mol : polymer : composition : (X)1(A)100 
+mol : polymer : theta : 5.0 
+output : filename.pro : type : profiles 
+output : filename.pro : template : /home/imc/Lukiev/sfbox_api/sfbox_api/data/profile.tmp 
+start
