@@ -1,5 +1,6 @@
 import os
 from typing import Dict, List
+import numpy as np
 
 from .composition import Composition
 from .lattice import Lat
@@ -24,7 +25,11 @@ class Frame:
         self.mols = mols
         self.mons = mons
         self.chi_list = chi_list
-
+        self.profile = dict()
+        self.stats = dict()
+        self.profile_labels = []
+        self.stats_labels = []
+        
         list_mons_names = []
         for m in mons:
             list_mons_names.append(m.name)
@@ -83,3 +88,27 @@ class Frame:
             f.write(str(self))
         os.chdir(TARGET_DIR)
         os.system(f"{TARGET_DIR}/sfbox {TARGET_DIR}/input.in >> info.txt")
+        with open(f"{TARGET_DIR}/info.txt", "r") as f:
+            content = f.read()
+        if not "Problem solved" in content:
+            raise TimeoutError("Frame: Calculation process is ruined") 
+        with open(f"{TARGET_DIR}/input.pro", 'r') as f:
+            lines = f.readlines()
+        labels = lines[0].split() 
+        pro_data = np.loadtxt(f"{TARGET_DIR}/input.pro", skiprows=1).T
+        self.profile[labels[0]] = pro_data[0]
+        iter = 0
+        for data in pro_data[1:]:
+            iter += 3
+            self.profile[labels[iter]] = data
+            self.profile_labels.append(labels[iter])
+            iter += 2
+            
+        with open(f"{TARGET_DIR}/input.kal", 'r') as f:
+            lines = f.readlines()
+        self.stats_labels = lines[0].split('\t') 
+        stats_data = np.loadtxt(f"{TARGET_DIR}/input.kal", skiprows=1).T
+        iter = -1
+        for stats in stats_data:
+            iter += 1
+            self.stats[self.stats_labels[iter]] = stats

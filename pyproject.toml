@@ -1,12 +1,13 @@
 [tool.poetry]
 name = "sfbox-api"
-version = "0.1.1"
+version = "1.0.0"
 description = "Application programming interface of the SFbox program"
 authors = ["Ivan Mikhailov <mikhailov.ivan.imc@gmail.com>"]
 readme = "README.md"
 
 [tool.poetry.dependencies]
 python = "^3.10"
+numpy = "^1.25.2"
 sympy = "^1.12"
 pydantic = "^2.4.2"
 

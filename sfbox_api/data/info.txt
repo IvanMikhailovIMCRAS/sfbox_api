@@ -3,6 +3,9 @@ Checking inputfile /home/ohm/pcodes/sfbox_api/sfbox_api/data/input.in for errors
 Warning
 An output file named 'input.pro' already exists, it will be overwritten after the calculation.
 
+Warning
+An output file named 'input.kal' already exists, it will be overwritten after the calculation.
+
 no errors found in /home/ohm/pcodes/sfbox_api/sfbox_api/data/input.in
 Here we go...
 iterate 100

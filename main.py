@@ -23,3 +23,9 @@ if __name__ == "__main__":
     frame = Frame(lat, sys, mols, mons)
     
     frame.run()
+    
+    print(frame.profile_labels)
+    # print(frame.profile["water"])
+    
+    print(frame.stats_labels)
+    print(frame.stats["sys : name : free energy"])
