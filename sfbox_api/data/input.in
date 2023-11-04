@@ -4,6 +4,12 @@ lat : name : n_layers : 100
 lat : name : lambda : 0.16666666666666666667 
 lat : name : latticetype : standard 
 lat : name : bondlength : 3e-10 
+lat : name : lowerbound : surface 
+mon : lower : freedom : frozen 
+mon : lower : frozen_range : lowerbound 
+lat : name : upperbound : surface 
+mon : upper : freedom : frozen 
+mon : upper : frozen_range : upperbound 
 sys : name : temperature : 298.15 
 sys : name : overflow_protection : false 
 sys : name : super_iteration : false 

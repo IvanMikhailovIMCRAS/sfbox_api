@@ -19,6 +19,8 @@ class Lat(BaseModel):
     offset_first_layer: Optional[float] = None
     offset_first_layer_x: Optional[float] = None
     offset_first_layer_y: Optional[float] = None
+    lowerbound: Literal["surface", "mirror1", "mirror2", "periodic", "bulk"] = "mirror1"
+    upperbound: Literal["surface", "mirror1", "mirror2", "periodic", "bulk"] = "mirror1"
 
     @field_validator("lambda1")
     @classmethod

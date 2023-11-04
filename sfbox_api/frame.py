@@ -65,6 +65,12 @@ class Frame:
                     result += f"lat : {self.lat.name} : lambda : {str(p[1])} \n"
                 else:
                     result += f"lat : {self.lat.name} : {p[0]} : {str(p[1])} \n"
+                if p[0] == "lowerbound" and p[1] == "surface":
+                    result += f"mon : lower : freedom : frozen \n"
+                    result += f"mon : lower : frozen_range : lowerbound \n"
+                if p[0] == "upperbound" and p[1] == "surface":
+                    result += f"mon : upper : freedom : frozen \n"
+                    result += f"mon : upper : frozen_range : upperbound \n"
 
         for p in self.sys:
             if p[1] and p[1] != self.sys.name:

@@ -1,7 +1,7 @@
 from sfbox_api import Frame, Lat, Mol, Mon, Sys
 
 if __name__ == "__main__":
-    lat = Lat(**{"geometry": "flat", "n_layers": 100})
+    lat = Lat(**{"geometry": "flat", "n_layers": 100, "lowerbound": "surface", "upperbound": "surface"})
 
     mols = []
     mols.append(Mol(**{"name": "water", "composition": "(W)1", "freedom": "solvent"}))
