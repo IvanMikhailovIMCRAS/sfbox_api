@@ -8,29 +8,37 @@ An output file named 'input.kal' already exists, it will be overwritten after th
 
 no errors found in /home/ohm/pcodes/sfbox_api/sfbox_api/data/input.in
 Here we go...
-iterate 100
+iterate 400
 NEWTON has been notified.
 Residual error:
-Your guess:i= 0  7.30852e-01  |g|=1.04519e+00
-hessian scaling: 9.65e-01
-i= 1  4.98610e-01  |g|=8.34095e-01  alpha=9.45e-01
-i= 2  4.22221e-01  |g|=5.59014e-01  alpha=1.00e+00
-i= 3  2.51921e-01  |g|=5.19307e-01  alpha=9.26e-01
-i= 4  1.73231e-01  |g|=4.01137e-01  alpha=1.00e+00
-i= 5  9.21201e-02  |g|=1.64612e-01  alpha=1.00e+00
-i= 6  8.66512e-02  |g|=2.31590e-01  alpha=1.00e+00
-i= 7  5.18704e-02  |g|=1.49177e-01  alpha=1.00e+00
-i= 8  2.07505e-02  |g|=5.80639e-02  alpha=1.00e+00
-i= 9  4.29574e-03  |g|=1.36246e-02  alpha=1.00e+00
-i= 10  2.13722e-03  |g|=5.66152e-03  alpha=1.00e+00
-i= 11  8.64915e-04  |g|=2.47181e-03  alpha=7.68e-01
-i= 12  3.70608e-04  |g|=1.25731e-03  alpha=1.00e+00
-i= 13  5.96671e-05  |g|=1.87428e-04  alpha=6.98e-01
-i= 14  8.91732e-06  |g|=1.64152e-05  alpha=1.00e+00
-i= 15  3.30012e-06  |g|=5.56162e-06  alpha=1.00e+00
-i= 16  1.07556e-06  |g|=2.30198e-06  alpha=1.00e+00
-i= 17  3.53940e-07  |g|=8.29459e-07  alpha=1.00e+00
-i= 18  6.60004e-08  |g|=1.26646e-07  alpha=1.00e+00
+Your guess:i= 0  1.23795e+00  |g|=2.22217e+00
+hessian scaling: 4.75e-01
+i= 1  1.58225e+00  |g|=1.76746e+00  alpha=3.44e-01
+i= 2  1.30465e+00  |g|=1.67869e+00  alpha=2.35e-01
+i= 3  4.64212e-01  |g|=8.39527e-01  alpha=2.66e-01
+i= 4  5.88426e-01  |g|=1.40291e+00  alpha=8.39e-01
+i= 5  3.16347e-01  |g|=1.10290e+00  alpha=7.24e-01
+i= 6  7.84503e-02  |g|=2.66271e-01  alpha=1.00e+00
+i= 7  7.00430e-02  |g|=2.31519e-01  alpha=1.00e+00
+i= 8  2.66284e-02  |g|=7.95106e-02  alpha=6.94e-01
+i= 9  1.79875e-02  |g|=4.39214e-02  alpha=1.00e+00
+i= 10  2.02745e-02  |g|=6.06910e-02  alpha=9.86e-01
+i= 11  9.08943e-03  |g|=2.60705e-02  alpha=1.00e+00
+i= 12  5.13727e-03  |g|=1.71521e-02  alpha=1.00e+00
+i= 13  3.12517e-03  |g|=1.04415e-02  alpha=1.00e+00
+i= 14  2.00239e-03  |g|=6.71331e-03  alpha=1.00e+00
+i= 15  1.61132e-03  |g|=3.68723e-03  alpha=1.00e+00
+i= 16  3.51208e-04  |g|=9.55813e-04  alpha=1.00e+00
+i= 17  1.57941e-04  |g|=3.97311e-04  alpha=1.00e+00
+i= 18  1.22695e-04  |g|=2.83792e-04  alpha=4.64e-01
+i= 19  7.31000e-05  |g|=2.09249e-04  alpha=1.00e+00
+i= 20  4.98998e-05  |g|=1.02327e-04  alpha=1.00e+00
+i= 21  1.16595e-05  |g|=2.64735e-05  alpha=1.00e+00
+i= 22  4.28979e-06  |g|=1.10163e-05  alpha=1.00e+00
+i= 23  1.35950e-06  |g|=3.83767e-06  alpha=1.00e+00
+i= 24  1.26608e-06  |g|=2.30717e-06  alpha=1.00e+00
+i= 25  2.82998e-07  |g|=5.31778e-07  alpha=8.06e-01
+i= 26  4.89401e-08  |g|=1.28229e-07  alpha=1.00e+00
 Newton done.
 Problem solved.
 /home/ohm/pcodes/sfbox_api/sfbox_api/data/sfbox has finished.

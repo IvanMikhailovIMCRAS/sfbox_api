@@ -12,6 +12,8 @@ mon : X : freedom : pinned
 mon : X : pinned_range : 1 
 mon : A : freedom : free 
 mon : G : freedom : free 
+mon : X : chi - W : 0.2 
+mon : A : chi - W : 0.5 
 mol : water : freedom : solvent 
 mol : water : composition : (W)1 
 mol : pol : freedom : restricted 

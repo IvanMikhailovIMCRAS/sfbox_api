@@ -1,5 +1,6 @@
 import os
 from typing import Dict, List
+
 import numpy as np
 
 from .composition import Composition
@@ -18,7 +19,7 @@ class Frame:
         sys: Sys,
         mols: List[Mol],
         mons: List[Mon],
-        chi_list: Dict = dict(),
+        chi_list: Dict[str, float] = dict(),
     ) -> None:
         self.lat = lat
         self.sys = sys
@@ -29,7 +30,7 @@ class Frame:
         self.stats = dict()
         self.profile_labels = []
         self.stats_labels = []
-        
+
         list_mons_names = []
         for m in mons:
             list_mons_names.append(m.name)
@@ -47,6 +48,15 @@ class Frame:
                 f"Set monomers: {list_mons_names}, but {list_mons_compare} used in molecules"
             )
 
+        for paar in self.chi_list:
+            p = paar.split()
+            if len(p) != 2:
+                raise ValueError(f"Frame: incorrect key in chi_list: {paar}")
+            if p[0] not in list_mons_names:
+                raise ValueError(f"Frame: unknown type monomer in chi_list: {p[0]}")
+            if p[1] not in list_mons_names:
+                raise ValueError(f"Frame: unknown type monomer in chi_list: {p[1]}")
+
     def __str__(self):
         result = ""
         for p in self.lat:
@@ -55,13 +65,20 @@ class Frame:
                     result += f"lat : {self.lat.name} : lambda : {str(p[1])} \n"
                 else:
                     result += f"lat : {self.lat.name} : {p[0]} : {str(p[1])} \n"
+
         for p in self.sys:
             if p[1] and p[1] != self.sys.name:
                 result += f"sys : {self.sys.name} : {p[0]} : {str(p[1])} \n"
+
         for mon in self.mons:
             for p in mon:
                 if p[1] and p[1] != mon.name:
                     result += f"mon : {mon.name} : {p[0]} : {str(p[1])} \n"
+
+        for paar in self.chi_list:
+            p = paar.split()
+            result += f"mon : {p[0]} : chi - {p[1]} : {self.chi_list[paar]} \n"
+
         for mol in self.mols:
             for p in mol:
                 if p[1] and p[1] != mol.name:
@@ -74,6 +91,10 @@ class Frame:
         return result
 
     def run(self):
+        self.profile = dict()
+        self.stats = dict()
+        self.profile_labels = []
+        self.stats_labels = []
         f = open(f"{TARGET_DIR}/info.txt", "w")
         f.close()
         f = open(f"{TARGET_DIR}/input.pro", "w")
@@ -90,11 +111,11 @@ class Frame:
         os.system(f"{TARGET_DIR}/sfbox {TARGET_DIR}/input.in >> info.txt")
         with open(f"{TARGET_DIR}/info.txt", "r") as f:
             content = f.read()
-        if not "Problem solved" in content:
-            raise TimeoutError("Frame: Calculation process is ruined") 
-        with open(f"{TARGET_DIR}/input.pro", 'r') as f:
+        if "Problem solved" not in content:
+            raise TimeoutError("Frame: Calculation process is ruined")
+        with open(f"{TARGET_DIR}/input.pro", "r") as f:
             lines = f.readlines()
-        labels = lines[0].split() 
+        labels = lines[0].split()
         pro_data = np.loadtxt(f"{TARGET_DIR}/input.pro", skiprows=1).T
         self.profile[labels[0]] = pro_data[0]
         iter = 0
@@ -103,10 +124,10 @@ class Frame:
             self.profile[labels[iter]] = data
             self.profile_labels.append(labels[iter])
             iter += 2
-            
-        with open(f"{TARGET_DIR}/input.kal", 'r') as f:
+
+        with open(f"{TARGET_DIR}/input.kal", "r") as f:
             lines = f.readlines()
-        self.stats_labels = lines[0].split('\t') 
+        self.stats_labels = lines[0].split("\t")
         stats_data = np.loadtxt(f"{TARGET_DIR}/input.kal", skiprows=1).T
         iter = -1
         for stats in stats_data:

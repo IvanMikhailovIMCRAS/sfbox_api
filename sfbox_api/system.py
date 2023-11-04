@@ -1,6 +1,6 @@
 from typing import Literal, Optional
 
-from pydantic import (BaseModel, ValidationError, field_validator)
+from pydantic import BaseModel, ValidationError, field_validator
 
 
 class Sys(BaseModel):
