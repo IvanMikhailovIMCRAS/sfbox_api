@@ -93,6 +93,7 @@ class Frame:
         result += f"output : filename.pro : template : {TARGET_DIR}/profile.tmp \n"
         result += "output : filename.kal : type : kal \n"
         result += f"output : filename.kal : template : {TARGET_DIR}/kal.tmp \n"
+        result += f"newton : name : tolerance : 1e-7 \n"
         result += "start"
         return result
 

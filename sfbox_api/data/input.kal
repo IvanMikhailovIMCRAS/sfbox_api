@@ -1,2 +1,2 @@
-sys : name : free energy	sys : name : free energy(po)	mol : water : ln(G(N|1))	mol : pol : ln(G(N|1))
--2.219588e+000	-2.219589e+000	4.553877e+000	-9.255252e+000
+sys : name : free energy	sys : name : free energy(po)	mol : water : ln(G(N|1))	mol : pol : ln(G(N|1))	mol : ionp : ln(G(N|1))	mol : ionm : ln(G(N|1))
+-7.542615e+000	-3.034367e+000	4.549275e+000	-5.744742e+001	4.137443e+000	6.332643e+000

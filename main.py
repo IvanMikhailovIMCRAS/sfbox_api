@@ -1,7 +1,10 @@
 from sfbox_api import Frame, Lat, Mol, Mon, Sys
 
 if __name__ == "__main__":
-    lat = Lat(**{"geometry": "flat", "n_layers": 100, "lowerbound": "surface", "upperbound": "surface"})
+    alpha = 0.1
+    phi_bulk = 1e-3
+
+    lat = Lat(**{"geometry": "flat", "n_layers": 100, "lowerbound": "surface"})
 
     mols = []
     mols.append(Mol(**{"name": "water", "composition": "(W)1", "freedom": "solvent"}))
@@ -15,23 +18,36 @@ if __name__ == "__main__":
             }
         )
     )
+    mols.append(
+        Mol(
+            **{
+                "name": "ionp",
+                "composition": "(P)1",
+                "freedom": "free",
+                "phibulk": phi_bulk,
+            }
+        )
+    )
+    mols.append(
+        Mol(**{"name": "ionm", "composition": "(M)1", "freedom": "neutralizer"})
+    )
 
     mons = []
     mons.append(Mon(**{"name": "W", "freedom": "free"}))
-    mons.append(Mon(**{"name": "X", "freedom": "pinned", "pinned_range": "1"}))
-    mons.append(Mon(**{"name": "A", "freedom": "free"}))
-    mons.append(Mon(**{"name": "G", "freedom": "free"}))
+    mons.append(
+        Mon(**{"name": "X", "freedom": "pinned", "pinned_range": "1", "valence": alpha})
+    )
+    mons.append(Mon(**{"name": "A", "freedom": "free", "valence": alpha}))
+    mons.append(Mon(**{"name": "G", "freedom": "free", "valence": alpha}))
+
+    mons.append(Mon(**{"name": "P", "freedom": "free", "valence": 1.0}))
+    mons.append(Mon(**{"name": "M", "freedom": "free", "valence": -1.0}))
 
     sys = Sys()
 
-    chi_list = {"X W": 0.2, "A W": 0.5}
-
-    frame = Frame(lat, sys, mols, mons, chi_list=chi_list)
+    frame = Frame(lat, sys, mols, mons)
 
     frame.run()
 
     print(frame.profile_labels)
     # print(frame.profile["water"])
-
-    print(frame.stats_labels)
-    print(frame.stats["sys : name : free energy"])
