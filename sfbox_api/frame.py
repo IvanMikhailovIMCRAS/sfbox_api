@@ -10,6 +10,7 @@ from .monomer import Mon
 from .system import Sys
 
 TARGET_DIR = f"{os.path.dirname(os.path.realpath(__file__))}/data"
+HOME_DIR = os.getcwd()
 
 
 class Frame:
@@ -108,6 +109,7 @@ class Frame:
         f.close()
         with open(f"{TARGET_DIR}/profile.tmp", "w") as f:
             f.writelines("mol : * : phi : profile \n")
+            f.writelines("sys : name : potential : profile \n") 
             f.writelines("mon : * : phi : profile")
         with open(f"{TARGET_DIR}/kal.tmp", "w") as f:
             f.writelines("sys : * : free energ* : 1 \n")
@@ -119,6 +121,7 @@ class Frame:
         with open(f"{TARGET_DIR}/info.txt", "r") as f:
             content = f.read()
         if "Problem solved" not in content:
+            os.chdir(HOME_DIR)
             raise TimeoutError("Frame: Calculation process is ruined")
         with open(f"{TARGET_DIR}/input.pro", "r") as f:
             lines = f.readlines()
@@ -140,3 +143,4 @@ class Frame:
         for stats in stats_data:
             iter += 1
             self.stats[self.stats_labels[iter]] = stats
+        os.chdir(HOME_DIR)
