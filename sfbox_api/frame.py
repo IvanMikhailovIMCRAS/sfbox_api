@@ -31,6 +31,7 @@ class Frame:
         self.stats = dict()
         self.profile_labels = []
         self.stats_labels = []
+        self.text = ""
 
         list_mons_names = []
         for m in mons:
@@ -67,11 +68,11 @@ class Frame:
                 else:
                     result += f"lat : {self.lat.name} : {p[0]} : {str(p[1])} \n"
                 if p[0] == "lowerbound" and p[1] == "surface":
-                    result += f"mon : lower : freedom : frozen \n"
-                    result += f"mon : lower : frozen_range : lowerbound \n"
+                    result += "mon : lower : freedom : frozen \n"
+                    result += "mon : lower : frozen_range : lowerbound \n"
                 if p[0] == "upperbound" and p[1] == "surface":
-                    result += f"mon : upper : freedom : frozen \n"
-                    result += f"mon : upper : frozen_range : upperbound \n"
+                    result += "mon : upper : freedom : frozen \n"
+                    result += "mon : upper : frozen_range : upperbound \n"
 
         for p in self.sys:
             if p[1] and p[1] != self.sys.name:
@@ -94,7 +95,9 @@ class Frame:
         result += f"output : filename.pro : template : {TARGET_DIR}/profile.tmp \n"
         result += "output : filename.kal : type : kal \n"
         result += f"output : filename.kal : template : {TARGET_DIR}/kal.tmp \n"
-        result += f"newton : name : tolerance : 1e-7 \n"
+        result += "newton : name : tolerance : 1e-7 \n"
+        result += self.text
+        result += "\n"
         result += "start"
         return result
 
@@ -109,7 +112,7 @@ class Frame:
         f.close()
         with open(f"{TARGET_DIR}/profile.tmp", "w") as f:
             f.writelines("mol : * : phi : profile \n")
-            f.writelines("sys : name : potential : profile \n") 
+            f.writelines("sys : name : potential : profile \n")
             f.writelines("mon : * : phi : profile")
         with open(f"{TARGET_DIR}/kal.tmp", "w") as f:
             f.writelines("sys : * : free energ* : 1 \n")
