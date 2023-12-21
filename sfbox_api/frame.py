@@ -9,9 +9,11 @@ from .molecule import Mol
 from .monomer import Mon
 from .system import Sys
 
-TARGET_DIR = f"{os.path.dirname(os.path.realpath(__file__))}/data"
 HOME_DIR = os.getcwd()
-
+if os.name != "nt": 
+    TARGET_DIR = f"{os.path.dirname(os.path.realpath(__file__))}/data"
+else:
+    TARGET_DIR = f"{os.path.dirname(os.path.realpath(__file__))}\\data"
 
 class Frame:
     def __init__(
@@ -92,13 +94,13 @@ class Frame:
                 if p[1] and p[1] != mol.name:
                     result += f"mol : {mol.name} : {p[0]} : {str(p[1])} \n"
         result += "output : filename.pro : type : profiles \n"
-        result += f"output : filename.pro : template : {TARGET_DIR}/profile.tmp \n"
+        result += f"output : filename.pro : template : profile.tmp \n"
         result += "output : filename.kal : type : kal \n"
-        result += f"output : filename.kal : template : {TARGET_DIR}/kal.tmp \n"
+        result += f"output : filename.kal : template : kal.tmp \n"
         result += "newton : name : tolerance : 1e-7 \n"
         result += self.text
         result += "\n"
-        result += "start"
+        result += "start"         
         return result
 
     def run(self):
@@ -106,30 +108,34 @@ class Frame:
         self.stats = dict()
         self.profile_labels = []
         self.stats_labels = []
-        f = open(f"{TARGET_DIR}/info.txt", "w")
+        
+        f = open(f"{os.path.join(TARGET_DIR, 'info.txt')}", "w")
         f.close()
-        f = open(f"{TARGET_DIR}/input.pro", "w")
+        f = open(f"{os.path.join(TARGET_DIR, 'input.pro')}", "w")
         f.close()
-        with open(f"{TARGET_DIR}/profile.tmp", "w") as f:
+        with open(f"{os.path.join(TARGET_DIR, 'profile.tmp')}", "w") as f:
             f.writelines("mol : * : phi : profile \n")
             f.writelines("sys : name : potential : profile \n")
             f.writelines("mon : * : phi : profile")
-        with open(f"{TARGET_DIR}/kal.tmp", "w") as f:
+        with open(f"{os.path.join(TARGET_DIR, 'kal.tmp')}", "w") as f:
             f.writelines("sys : * : free energ* : 1 \n")
             f.writelines("mol : * : ln(G* : 1)")
-        with open(f"{TARGET_DIR}/input.in", "w") as f:
+        with open(f"{os.path.join(TARGET_DIR, 'input.in')}", "w") as f:
             f.write(str(self))
         os.chdir(TARGET_DIR)
-        os.system(f"{TARGET_DIR}/sfbox {TARGET_DIR}/input.in >> info.txt")
-        with open(f"{TARGET_DIR}/info.txt", "r") as f:
+        if os.name != "nt":
+            os.system(f"{os.path.join(TARGET_DIR, 'sfbox')} {os.path.join(TARGET_DIR, 'input.in')} >> info.txt")
+        else:
+            os.system(f"{os.path.join(TARGET_DIR, 'sfbox.exe')} {os.path.join(TARGET_DIR, 'input.in')} >> info.txt")        
+        with open(f"{os.path.join(TARGET_DIR, 'info.txt')}", "r") as f:
             content = f.read()
         if "Problem solved" not in content:
             os.chdir(HOME_DIR)
             raise TimeoutError("Frame: Calculation process is ruined")
-        with open(f"{TARGET_DIR}/input.pro", "r") as f:
+        with open(f"{os.path.join(TARGET_DIR, 'input.pro')}", "r") as f:
             lines = f.readlines()
         labels = lines[0].split()
-        pro_data = np.loadtxt(f"{TARGET_DIR}/input.pro", skiprows=1).T
+        pro_data = np.loadtxt(f"{os.path.join(TARGET_DIR, 'input.pro')}", skiprows=1).T
         self.profile[labels[0]] = pro_data[0]
         iter = 0
         for data in pro_data[1:]:
@@ -138,12 +144,13 @@ class Frame:
             self.profile_labels.append(labels[iter])
             iter += 2
 
-        with open(f"{TARGET_DIR}/input.kal", "r") as f:
+        with open(f"{os.path.join(TARGET_DIR, 'input.kal')}", "r") as f:
             lines = f.readlines()
         self.stats_labels = lines[0].split("\t")
-        stats_data = np.loadtxt(f"{TARGET_DIR}/input.kal", skiprows=1).T
+        stats_data = np.loadtxt(f"{os.path.join(TARGET_DIR, 'input.kal')}", skiprows=1).T
         iter = -1
         for stats in stats_data:
             iter += 1
             self.stats[self.stats_labels[iter]] = stats
         os.chdir(HOME_DIR)
+        

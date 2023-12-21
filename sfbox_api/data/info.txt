@@ -1,24 +1,24 @@
-/home/ohm/pcodes/sfbox_api/sfbox_api/data/sfbox version 2.1.0.0 date: 2015-7913
-Checking inputfile /home/ohm/pcodes/sfbox_api/sfbox_api/data/input.in for errors
+C:\Users\ivanl\Desktop\ITMO\Post\DPD\sfbox_api\sfbox_api\data\sfbox.exe version 2.0.0.2 date: 2014-7-15
+Checking inputfile C:\Users\ivanl\Desktop\ITMO\Post\DPD\sfbox_api\sfbox_api\data\input.in for errors
 Warning
 An output file named 'input.pro' already exists, it will be overwritten after the calculation.
 
 Warning
 An output file named 'input.kal' already exists, it will be overwritten after the calculation.
 
-no errors found in /home/ohm/pcodes/sfbox_api/sfbox_api/data/input.in
+no errors found in C:\Users\ivanl\Desktop\ITMO\Post\DPD\sfbox_api\sfbox_api\data\input.in
 Here we go...
 iterate 100
 NEWTON has been notified.
 Residual error:
-Your guess:i= 0  7.31740e-02  |g|=7.59001e-02
-i= 1  3.17706e-02  |g|=4.21919e-02  alpha=1.00e+00
-i= 2  3.93492e-03  |g|=4.71042e-03  alpha=1.00e+00
-i= 3  6.81850e-04  |g|=8.74029e-04  alpha=1.00e+00
-i= 4  2.82022e-04  |g|=3.59829e-04  alpha=6.26e-01
-i= 5  1.70069e-05  |g|=1.99314e-05  alpha=1.00e+00
-i= 6  4.49711e-06  |g|=6.15272e-06  alpha=1.00e+00
-i= 7  8.12613e-08  |g|=1.13341e-07  alpha=1.00e+00
+Your guess:i= 0  7.31740e-002  |g|=7.59001e-002
+i= 1  3.17706e-002  |g|=4.21919e-002  alpha=1.00e+000
+i= 2  3.93492e-003  |g|=4.71042e-003  alpha=1.00e+000
+i= 3  6.81850e-004  |g|=8.74029e-004  alpha=1.00e+000
+i= 4  2.82022e-004  |g|=3.59829e-004  alpha=6.26e-001
+i= 5  1.70069e-005  |g|=1.99314e-005  alpha=1.00e+000
+i= 6  4.49711e-006  |g|=6.15272e-006  alpha=1.00e+000
+i= 7  8.12613e-008  |g|=1.13341e-007  alpha=1.00e+000
 Newton done.
 Problem solved.
-/home/ohm/pcodes/sfbox_api/sfbox_api/data/sfbox has finished.
+C:\Users\ivanl\Desktop\ITMO\Post\DPD\sfbox_api\sfbox_api\data\sfbox.exe has finished.
