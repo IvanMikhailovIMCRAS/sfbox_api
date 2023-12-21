@@ -22,9 +22,9 @@ mol : pol : freedom : restricted
 mol : pol : composition : (X)1((A)4[(A)10])24(A)3(G)1 
 mol : pol : theta : 3.41 
 output : filename.pro : type : profiles 
-output : filename.pro : template : /home/ohm/pcodes/sfbox_api/sfbox_api/data/profile.tmp 
+output : filename.pro : template : profile.tmp 
 output : filename.kal : type : kal 
-output : filename.kal : template : /home/ohm/pcodes/sfbox_api/sfbox_api/data/kal.tmp 
+output : filename.kal : template : kal.tmp 
 newton : name : tolerance : 1e-7 
 
 start
