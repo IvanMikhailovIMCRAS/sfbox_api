@@ -19,8 +19,8 @@ mon : A : chi - W : 0.0
 mol : Water : freedom : solvent 
 mol : Water : composition : (W)1 
 mol : pol : freedom : restricted 
-mol : pol : composition : (X)1((A)4[(A)10])24(A)3(G)1 
-mol : pol : theta : 3.41 
+mol : pol : composition : (X)1(A)49([(A)200])5((A)50([(A)200])5)3(A)50(G)1 
+mol : pol : theta : 212.5 
 output : filename.pro : type : profiles 
 output : filename.pro : template : profile.tmp 
 output : filename.kal : type : kal 

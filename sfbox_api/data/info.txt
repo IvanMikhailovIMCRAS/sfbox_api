@@ -1,24 +1,43 @@
-C:\Users\ivanl\Desktop\ITMO\Post\DPD\sfbox_api\sfbox_api\data\sfbox.exe version 2.0.0.2 date: 2014-7-15
-Checking inputfile C:\Users\ivanl\Desktop\ITMO\Post\DPD\sfbox_api\sfbox_api\data\input.in for errors
+/home/imc/Lukiev/sfbox_api/sfbox_api/data/sfbox version 2.1.0.0 date: 2015-7913
+Checking inputfile /home/imc/Lukiev/sfbox_api/sfbox_api/data/input.in for errors
 Warning
 An output file named 'input.pro' already exists, it will be overwritten after the calculation.
 
 Warning
 An output file named 'input.kal' already exists, it will be overwritten after the calculation.
 
-no errors found in C:\Users\ivanl\Desktop\ITMO\Post\DPD\sfbox_api\sfbox_api\data\input.in
+no errors found in /home/imc/Lukiev/sfbox_api/sfbox_api/data/input.in
 Here we go...
 iterate 100
 NEWTON has been notified.
 Residual error:
-Your guess:i= 0  7.31740e-002  |g|=7.59001e-002
-i= 1  3.17706e-002  |g|=4.21919e-002  alpha=1.00e+000
-i= 2  3.93492e-003  |g|=4.71042e-003  alpha=1.00e+000
-i= 3  6.81850e-004  |g|=8.74029e-004  alpha=1.00e+000
-i= 4  2.82022e-004  |g|=3.59829e-004  alpha=6.26e-001
-i= 5  1.70069e-005  |g|=1.99314e-005  alpha=1.00e+000
-i= 6  4.49711e-006  |g|=6.15272e-006  alpha=1.00e+000
-i= 7  8.12613e-008  |g|=1.13341e-007  alpha=1.00e+000
+Your guess:i= 0  7.11139e-01  |g|=1.00762e+00
+hessian scaling: 1.51e+00
+i= 1  2.49235e-01  |g|=5.40843e-01  alpha=1.50e+00
+i= 2  2.58239e-01  |g|=3.33917e-01  alpha=1.00e+00
+i= 3  1.15868e-01  |g|=2.20308e-01  alpha=1.00e+00
+i= 4  4.89385e-02  |g|=8.55867e-02  alpha=1.00e+00
+i= 5  4.21538e-02  |g|=8.09751e-02  alpha=6.25e-02  2 steps
+i= 6  4.69850e-02  |g|=7.94252e-02  alpha=2.35e-02
+i= 7  3.61498e-02  |g|=6.27886e-02  alpha=5.39e-01
+i= 8  2.18199e-02  |g|=4.41693e-02  alpha=2.50e-01  1 step
+i= 9  1.98497e-02  |g|=3.83699e-02  alpha=1.38e-01
+i= 10  1.34213e-02  |g|=2.64830e-02  alpha=2.50e-01  1 step
+i= 11  7.54196e-03  |g|=1.20368e-02  alpha=2.79e-01
+i= 12  6.69346e-03  |g|=2.12206e-02  alpha=1.00e+00
+i= 13  5.75360e-03  |g|=1.34408e-02  alpha=1.00e+00
+i= 14  3.90654e-03  |g|=1.04462e-02  alpha=1.00e+00
+i= 15  7.02783e-04  |g|=1.68392e-03  alpha=1.00e+00
+i= 16  3.30924e-04  |g|=7.19895e-04  alpha=1.00e+00
+i= 17  1.66774e-04  |g|=5.84793e-04  alpha=1.00e+00
+i= 18  3.98672e-05  |g|=9.32928e-05  alpha=1.00e+00
+i= 19  1.54644e-05  |g|=3.93504e-05  alpha=1.00e+00
+i= 20  6.58563e-06  |g|=1.13570e-05  alpha=1.00e+00
+i= 21  5.72229e-06  |g|=8.19452e-06  alpha=5.66e-01
+i= 22  9.35969e-07  |g|=1.94514e-06  alpha=1.00e+00
+i= 23  5.48655e-07  |g|=1.34230e-06  alpha=1.00e+00
+i= 24  3.49067e-07  |g|=5.73283e-07  alpha=1.00e+00
+i= 25  4.15310e-08  |g|=1.17106e-07  alpha=1.00e+00
 Newton done.
 Problem solved.
-C:\Users\ivanl\Desktop\ITMO\Post\DPD\sfbox_api\sfbox_api\data\sfbox.exe has finished.
+/home/imc/Lukiev/sfbox_api/sfbox_api/data/sfbox has finished.

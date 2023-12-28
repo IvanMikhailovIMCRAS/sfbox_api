@@ -10,10 +10,11 @@ from .monomer import Mon
 from .system import Sys
 
 HOME_DIR = os.getcwd()
-if os.name != "nt": 
+if os.name != "nt":
     TARGET_DIR = f"{os.path.dirname(os.path.realpath(__file__))}/data"
 else:
     TARGET_DIR = f"{os.path.dirname(os.path.realpath(__file__))}\\data"
+
 
 class Frame:
     def __init__(
@@ -100,7 +101,7 @@ class Frame:
         result += "newton : name : tolerance : 1e-7 \n"
         result += self.text
         result += "\n"
-        result += "start"         
+        result += "start"
         return result
 
     def run(self):
@@ -108,7 +109,7 @@ class Frame:
         self.stats = dict()
         self.profile_labels = []
         self.stats_labels = []
-        
+
         f = open(f"{os.path.join(TARGET_DIR, 'info.txt')}", "w")
         f.close()
         f = open(f"{os.path.join(TARGET_DIR, 'input.pro')}", "w")
@@ -124,9 +125,13 @@ class Frame:
             f.write(str(self))
         os.chdir(TARGET_DIR)
         if os.name != "nt":
-            os.system(f"{os.path.join(TARGET_DIR, 'sfbox')} {os.path.join(TARGET_DIR, 'input.in')} >> info.txt")
+            os.system(
+                f"{os.path.join(TARGET_DIR, 'sfbox')} {os.path.join(TARGET_DIR, 'input.in')} >> info.txt"
+            )
         else:
-            os.system(f"{os.path.join(TARGET_DIR, 'sfbox.exe')} {os.path.join(TARGET_DIR, 'input.in')} >> info.txt")        
+            os.system(
+                f"{os.path.join(TARGET_DIR, 'sfbox.exe')} {os.path.join(TARGET_DIR, 'input.in')} >> info.txt"
+            )
         with open(f"{os.path.join(TARGET_DIR, 'info.txt')}", "r") as f:
             content = f.read()
         if "Problem solved" not in content:
@@ -147,10 +152,11 @@ class Frame:
         with open(f"{os.path.join(TARGET_DIR, 'input.kal')}", "r") as f:
             lines = f.readlines()
         self.stats_labels = lines[0].split("\t")
-        stats_data = np.loadtxt(f"{os.path.join(TARGET_DIR, 'input.kal')}", skiprows=1).T
+        stats_data = np.loadtxt(
+            f"{os.path.join(TARGET_DIR, 'input.kal')}", skiprows=1
+        ).T
         iter = -1
         for stats in stats_data:
             iter += 1
             self.stats[self.stats_labels[iter]] = stats
         os.chdir(HOME_DIR)
-        
