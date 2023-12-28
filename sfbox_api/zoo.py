@@ -46,7 +46,7 @@ def comb_brush(Nb: int, n: int, m: int, n_layers, sigma: float) -> Frame:
 
 
 def barbwire(p, n, m, q, n_layers, sigma):
-    comp = f"(X)1(A){m-1}([(A){n}]){q}((A){m}([(A){n}]){q}){p-1}(A){m}(G)1"
+    comp = f"(X)1(A){m-1}([(A){n}]){q}((A){m}([(A){n}]){q}){p-1}(A){m-1}(G)1"
     N = (m + q * n) * p + m
     theta = N * sigma
     lat = Lat(**{"n_layers": n_layers, "geometry": "cylindrical"})
