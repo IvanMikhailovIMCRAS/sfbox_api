@@ -8,6 +8,7 @@ from .lattice import Lat
 from .molecule import Mol
 from .monomer import Mon
 from .system import Sys
+from .newton import Newton
 
 HOME_DIR = os.getcwd()
 if os.name != "nt":
@@ -24,12 +25,14 @@ class Frame:
         mols: List[Mol],
         mons: List[Mon],
         chi_list: Dict[str, float] = dict(),
+        newton: Newton = Newton(),
     ) -> None:
         self.lat = lat
         self.sys = sys
         self.mols = mols
         self.mons = mons
         self.chi_list = chi_list
+        self.newton = newton
         self.profile = dict()
         self.stats = dict()
         self.profile_labels = []
@@ -94,11 +97,15 @@ class Frame:
             for p in mol:
                 if p[1] and p[1] != mol.name:
                     result += f"mol : {mol.name} : {p[0]} : {str(p[1])} \n"
+
+        for p in self.newton:
+            if p[1] and p[1] != self.newton.name:
+                result += f"newton : {self.newton.name} : {p[0]} : {str(p[1])} \n"
+
         result += "output : filename.pro : type : profiles \n"
         result += "output : filename.pro : template : profile.tmp \n"
         result += "output : filename.kal : type : kal \n"
         result += "output : filename.kal : template : kal.tmp \n"
-        result += "newton : name : tolerance : 1e-7 \n"
         result += self.text
         result += "\n"
         result += "start"

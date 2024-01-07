@@ -40,11 +40,11 @@ mol : ionp : composition : (P)1
 mol : ionm : freedom : free 
 mol : ionm : phibulk : 0.001 
 mol : ionm : composition : (M)1 
+newton : isaac : tolerance : 1e-07 
 output : filename.pro : type : profiles 
 output : filename.pro : template : profile.tmp 
 output : filename.kal : type : kal 
 output : filename.kal : template : kal.tmp 
-newton : name : tolerance : 1e-7 
 state : H3O : valence: 1 
 state : H2O : valence: 0 
 state : OH : valence: -1 
@@ -66,10 +66,10 @@ mon : G : state2: G1
 reaction : auto : equation: 2(H2O)=1(H3O)1(OH) 
 reaction : auto : pK: 17.5 
 reaction : pdx : equation: 1(X0)1(H2O)=1(X1)1(H3O) 
-reaction : pdx : pK: 3.76 
+reaction : pdx : pK: 2.76 
 reaction : pda : equation: 1(A0)1(H2O)=1(A1)1(H3O) 
-reaction : pda : pK: 3.76 
+reaction : pda : pK: 2.76 
 reaction : pdg : equation: 1(G0)1(H2O)=1(G1)1(H3O) 
-reaction : pdg : pK: 3.76 
+reaction : pdg : pK: 2.76 
 
 start

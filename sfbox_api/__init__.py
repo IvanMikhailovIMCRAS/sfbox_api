@@ -7,6 +7,7 @@ from .molecule import Mol
 from .monomer import Mon
 from .run import run
 from .system import Sys
+from .newton import Newton
 from .zoo import barbwire, comb_brush, polyacid
 
 if os.name != "nt":
@@ -20,6 +21,7 @@ __all__ = [
     "Mol",
     "Mon",
     "Sys",
+    "Newton",
     "Frame",
     "comb_brush",
     "barbwire",
