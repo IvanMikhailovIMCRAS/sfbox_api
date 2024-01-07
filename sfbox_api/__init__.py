@@ -7,7 +7,7 @@ from .molecule import Mol
 from .monomer import Mon
 from .run import run
 from .system import Sys
-from .zoo import barbwire, comb_brush
+from .zoo import barbwire, comb_brush, polyacid
 
 if os.name != "nt":
     target = f"{os.path.dirname(os.path.realpath(__file__))}/data/sfbox"
@@ -23,4 +23,5 @@ __all__ = [
     "Frame",
     "comb_brush",
     "barbwire",
+    "polyacid",
 ]

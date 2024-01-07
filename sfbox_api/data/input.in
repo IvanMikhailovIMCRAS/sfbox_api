@@ -1,30 +1,75 @@
 lat : name : gradients : 1 
-lat : name : geometry : cylindrical 
-lat : name : n_layers : 100 
+lat : name : geometry : flat 
+lat : name : n_layers : 101 
 lat : name : lambda : 0.16666666666666666667 
 lat : name : latticetype : standard 
-lat : name : bondlength : 3e-10 
-lat : name : lowerbound : mirror1 
+lat : name : bondlength : 3.1e-10 
+lat : name : lowerbound : surface 
+mon : lower : freedom : frozen 
+mon : lower : frozen_range : lowerbound 
 lat : name : upperbound : mirror1 
 sys : name : temperature : 298.15 
 sys : name : overflow_protection : false 
 sys : name : super_iteration : false 
+mon : W : freedom : free 
 mon : X : freedom : pinned 
 mon : X : pinned_range : 1 
 mon : A : freedom : free 
 mon : G : freedom : free 
-mon : W : freedom : free 
-mon : X : chi - W : 0.0 
-mon : A : chi - W : 0.0 
-mol : Water : freedom : solvent 
-mol : Water : composition : (W)1 
+mon : P : freedom : free 
+mon : P : valence : 1.0 
+mon : M : freedom : free 
+mon : M : valence : -1.0 
+mon : X : chi - W : 0.5 
+mon : A : chi - W : 0.5 
+mon : G : chi - W : 0.5 
+mon : X : chi - P : 0.5 
+mon : A : chi - P : 0.5 
+mon : G : chi - P : 0.5 
+mon : X : chi - M : 0.5 
+mon : A : chi - M : 0.5 
+mon : G : chi - M : 0.5 
+mol : water : freedom : solvent 
+mol : water : composition : (W)1 
 mol : pol : freedom : restricted 
-mol : pol : composition : (X)1(A)49([(A)200])5((A)50([(A)200])5)3(A)49(G)1 
-mol : pol : theta : 212.5 
+mol : pol : composition : (X)1(A)98(G)1 
+mol : pol : theta : 16.0 
+mol : ionp : freedom : free 
+mol : ionp : phibulk : 0.001 
+mol : ionp : composition : (P)1 
+mol : ionm : freedom : free 
+mol : ionm : phibulk : 0.001 
+mol : ionm : composition : (M)1 
 output : filename.pro : type : profiles 
 output : filename.pro : template : profile.tmp 
 output : filename.kal : type : kal 
 output : filename.kal : template : kal.tmp 
 newton : name : tolerance : 1e-7 
+state : H3O : valence: 1 
+state : H2O : valence: 0 
+state : OH : valence: -1 
+state : X0 : valence: 0 
+state : X1 : valence: -1 
+state : A0 : valence: 0 
+state : A1 : valence: -1 
+state : G0 : valence: 0 
+state : G1 : valence: -1 
+mon : W : state1: H3O 
+mon : W : state2: H2O 
+mon : W : state3: OH 
+mon : X : state1: X0 
+mon : X : state2: X1 
+mon : A : state1: A0 
+mon : A : state2: A1 
+mon : G : state1: G0 
+mon : G : state2: G1 
+reaction : auto : equation: 2(H2O)=1(H3O)1(OH) 
+reaction : auto : pK: 17.5 
+reaction : pdx : equation: 1(X0)1(H2O)=1(X1)1(H3O) 
+reaction : pdx : pK: 3.76 
+reaction : pda : equation: 1(A0)1(H2O)=1(A1)1(H3O) 
+reaction : pda : pK: 3.76 
+reaction : pdg : equation: 1(G0)1(H2O)=1(G1)1(H3O) 
+reaction : pdg : pK: 3.76 
 
 start

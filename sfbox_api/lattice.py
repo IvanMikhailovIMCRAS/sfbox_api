@@ -16,7 +16,7 @@ class Lat(BaseModel):
     n_layers_y: Optional[int] = None
     lambda1: str = "0.16666666666666666667"
     latticetype: Literal["standard", "stencils"] = "standard"
-    bondlength: float = 3e-10
+    bondlength: float = 3.1e-10
     offset_first_layer: Optional[float] = None
     offset_first_layer_x: Optional[float] = None
     offset_first_layer_y: Optional[float] = None

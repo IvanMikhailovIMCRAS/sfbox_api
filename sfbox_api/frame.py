@@ -95,9 +95,9 @@ class Frame:
                 if p[1] and p[1] != mol.name:
                     result += f"mol : {mol.name} : {p[0]} : {str(p[1])} \n"
         result += "output : filename.pro : type : profiles \n"
-        result += f"output : filename.pro : template : profile.tmp \n"
+        result += "output : filename.pro : template : profile.tmp \n"
         result += "output : filename.kal : type : kal \n"
-        result += f"output : filename.kal : template : kal.tmp \n"
+        result += "output : filename.kal : template : kal.tmp \n"
         result += "newton : name : tolerance : 1e-7 \n"
         result += self.text
         result += "\n"
@@ -116,8 +116,8 @@ class Frame:
         f.close()
         with open(f"{os.path.join(TARGET_DIR, 'profile.tmp')}", "w") as f:
             f.writelines("mol : * : phi : profile \n")
-            f.writelines("sys : name : potential : profile \n")
-            f.writelines("mon : * : phi : profile")
+            f.writelines("mon : * : phi : profile \n")
+            f.writelines("state : * : phi : profile")
         with open(f"{os.path.join(TARGET_DIR, 'kal.tmp')}", "w") as f:
             f.writelines("sys : * : free energ* : 1 \n")
             f.writelines("mol : * : ln(G* : 1)")

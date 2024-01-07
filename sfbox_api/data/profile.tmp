@@ -1,3 +1,3 @@
 mol : * : phi : profile 
-sys : name : potential : profile 
-mon : * : phi : profile
+mon : * : phi : profile 
+state : * : phi : profile
