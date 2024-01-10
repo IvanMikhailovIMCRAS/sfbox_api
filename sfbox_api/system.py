@@ -6,8 +6,8 @@ from pydantic import BaseModel, ValidationError, field_validator
 class Sys(BaseModel):
     name: str = "name"
     temperature: float = 298.15
-    overflow_protection: Literal["true", "false"] = "false"
-    super_iteration: Literal["true", "false"] = "false"
+    overflow_protection: Optional[Literal["true", "false"]] = None  # default false
+    super_iteration: Optional[Literal["true", "false"]] = None  # default false
     super_fuction_value: Optional[float] = None
     super_tolerance: Optional[float] = None
 
@@ -22,7 +22,7 @@ class Sys(BaseModel):
 if __name__ == "__main__":
     input = {"temperature": 300.0}
     try:
-        syst = Sys(**input)
+        syst = Sys.model_validate(input)
         for p in syst:
             if p[1]:
                 print(f"lat : {syst.name} : {p[0]} : {str(p[1])}")

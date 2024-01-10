@@ -5,9 +5,8 @@ from .frame import Frame
 from .lattice import Lat
 from .molecule import Mol
 from .monomer import Mon
-from .run import run
-from .system import Sys
 from .newton import Newton
+from .system import Sys
 from .zoo import barbwire, comb_brush, polyacid
 
 if os.name != "nt":
@@ -16,7 +15,6 @@ if os.name != "nt":
 
 __all__ = [
     "Composition",
-    "run",
     "Lat",
     "Mol",
     "Mon",

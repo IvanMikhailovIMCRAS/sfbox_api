@@ -1,6 +1,7 @@
 from typing import Literal, Optional
 
-from pydantic import BaseModel, ValidationError, field_validator, model_validator
+from pydantic import (BaseModel, ValidationError, field_validator,
+                      model_validator)
 
 # import warnings
 # warnings.filterwarnings('ignore')
@@ -52,7 +53,7 @@ if __name__ == "__main__":
         "composition": "(H)2(O)1",
     }
     try:
-        mol = Mol(**input)
+        mol = Mol.model_validate(input)
         for p in mol:
             if p[1]:
                 print(f"mol : {mol.name} : {p[0]} : {str(p[1])}")

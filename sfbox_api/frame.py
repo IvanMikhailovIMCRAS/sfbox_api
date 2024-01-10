@@ -1,5 +1,5 @@
 import os
-from typing import Dict, List
+from typing import Dict, List, Optional
 
 import numpy as np
 
@@ -7,8 +7,8 @@ from .composition import Composition
 from .lattice import Lat
 from .molecule import Mol
 from .monomer import Mon
-from .system import Sys
 from .newton import Newton
+from .system import Sys
 
 HOME_DIR = os.getcwd()
 if os.name != "nt":
@@ -33,10 +33,10 @@ class Frame:
         self.mons = mons
         self.chi_list = chi_list
         self.newton = newton
-        self.profile = dict()
-        self.stats = dict()
-        self.profile_labels = []
-        self.stats_labels = []
+        self.profile: Optional[Dict[str, np.ndarray]] = dict()
+        self.stats: Optional[Dict[str, float]] = dict()
+        self.profile_labels: Optional[List[str]] = []
+        self.stats_labels: Optional[List[str]] = []
         self.text = ""
 
         list_mons_names = []
@@ -149,6 +149,7 @@ class Frame:
         labels = lines[0].split()
         pro_data = np.loadtxt(f"{os.path.join(TARGET_DIR, 'input.pro')}", skiprows=1).T
         self.profile[labels[0]] = pro_data[0]
+        self.profile_labels.append(labels[0])
         iter = 0
         for data in pro_data[1:]:
             iter += 3

@@ -9,8 +9,6 @@ mon : lower : freedom : frozen
 mon : lower : frozen_range : lowerbound 
 lat : name : upperbound : mirror1 
 sys : name : temperature : 298.15 
-sys : name : overflow_protection : false 
-sys : name : super_iteration : false 
 mon : W : freedom : free 
 mon : X : freedom : pinned 
 mon : X : pinned_range : 1 
@@ -40,7 +38,9 @@ mol : ionp : composition : (P)1
 mol : ionm : freedom : free 
 mol : ionm : phibulk : 0.001 
 mol : ionm : composition : (M)1 
+newton : isaac : method : pseudohessian 
 newton : isaac : tolerance : 1e-07 
+newton : isaac : deltamax : 0.5 
 output : filename.pro : type : profiles 
 output : filename.pro : template : profile.tmp 
 output : filename.kal : type : kal 

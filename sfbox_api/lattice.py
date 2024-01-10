@@ -1,6 +1,7 @@
 from typing import Literal, Optional
 
-from pydantic import BaseModel, ValidationError, field_validator, model_validator
+from pydantic import (BaseModel, ValidationError, field_validator,
+                      model_validator)
 
 # import warnings
 # warnings.filterwarnings('ignore')
@@ -71,7 +72,7 @@ class Lat(BaseModel):
 if __name__ == "__main__":
     input = {"n_layers_x": 100, "n_layers_y": 100, "geometry": "flat", "gradients": 2}
     try:
-        lattice = Lat(**input)
+        lattice = Lat.model_validate(input)
         for p in lattice:
             if p[1]:
                 print(f"lat : {lattice.name} : {p[0]} : {str(p[1])}")

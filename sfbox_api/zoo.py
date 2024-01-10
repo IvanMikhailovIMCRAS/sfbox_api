@@ -17,17 +17,19 @@ def comb_brush(Nb: int, n: int, m: int, n_layers, sigma: float) -> Frame:
         else:
             comp = f"(X)1((A){m}[(A){n}]){Nb//m-1}(G)1"
     theta = (Nb + 1 + (Nb // m - 1) * n) * sigma
-    lat = Lat(**{"n_layers": n_layers, "geometry": "cylindrical"})
+    lat = Lat.model_validate({"n_layers": n_layers, "geometry": "cylindrical"})
     mons = [
-        Mon(**{"name": "X", "freedom": "pinned", "pinned_range": "1"}),
-        Mon(**{"name": "A", "freedom": "free"}),
-        Mon(**{"name": "G", "freedom": "free"}),
-        Mon(**{"name": "W", "freedom": "free"}),
+        Mon.model_validate({"name": "X", "freedom": "pinned", "pinned_range": "1"}),
+        Mon.model_validate({"name": "A", "freedom": "free"}),
+        Mon.model_validate({"name": "G", "freedom": "free"}),
+        Mon.model_validate({"name": "W", "freedom": "free"}),
     ]
     mols = [
-        Mol(**{"name": "Water", "composition": "(W)1", "freedom": "solvent"}),
-        Mol(
-            **{
+        Mol.model_validate(
+            {"name": "Water", "composition": "(W)1", "freedom": "solvent"}
+        ),
+        Mol.model_validate(
+            {
                 "name": "pol",
                 "composition": comp,
                 "freedom": "restricted",
@@ -49,17 +51,19 @@ def barbwire(p, n, m, q, n_layers, sigma):
     comp = f"(X)1(A){m-1}([(A){n}]){q}((A){m}([(A){n}]){q}){p-1}(A){m-1}(G)1"
     N = (m + q * n) * p + m
     theta = N * sigma
-    lat = Lat(**{"n_layers": n_layers, "geometry": "cylindrical"})
+    lat = Lat.model_validate({"n_layers": n_layers, "geometry": "cylindrical"})
     mons = [
-        Mon(**{"name": "X", "freedom": "pinned", "pinned_range": "1"}),
-        Mon(**{"name": "A", "freedom": "free"}),
-        Mon(**{"name": "G", "freedom": "free"}),
-        Mon(**{"name": "W", "freedom": "free"}),
+        Mon.model_validate({"name": "X", "freedom": "pinned", "pinned_range": "1"}),
+        Mon.model_validate({"name": "A", "freedom": "free"}),
+        Mon.model_validate({"name": "G", "freedom": "free"}),
+        Mon.model_validate({"name": "W", "freedom": "free"}),
     ]
     mols = [
-        Mol(**{"name": "Water", "composition": "(W)1", "freedom": "solvent"}),
-        Mol(
-            **{
+        Mol.model_validate(
+            {"name": "Water", "composition": "(W)1", "freedom": "solvent"}
+        ),
+        Mol.model_validate(
+            {
                 "name": "pol",
                 "composition": comp,
                 "freedom": "restricted",
@@ -97,41 +101,43 @@ def polyacid(
     comp = f"(X)1(A){N-2}(G){1}"
     theta = N * sigma
 
-    lat = Lat(
-        **{
+    lat = Lat.model_validate(
+        {
             "n_layers": n_layers,
             "geometry": "flat",
             "lowerbound": "surface",
         }
     )
     mons = [
-        Mon(**{"name": "W", "freedom": "free"}),
-        Mon(**{"name": "X", "freedom": "pinned", "pinned_range": "1"}),
-        Mon(**{"name": "A", "freedom": "free"}),
-        Mon(**{"name": "G", "freedom": "free"}),
-        Mon(**{"name": "P", "freedom": "free", "valence": 1.0}),
-        Mon(**{"name": "M", "freedom": "free", "valence": -1.0}),
+        Mon.model_validate({"name": "W", "freedom": "free"}),
+        Mon.model_validate({"name": "X", "freedom": "pinned", "pinned_range": "1"}),
+        Mon.model_validate({"name": "A", "freedom": "free"}),
+        Mon.model_validate({"name": "G", "freedom": "free"}),
+        Mon.model_validate({"name": "P", "freedom": "free", "valence": 1.0}),
+        Mon.model_validate({"name": "M", "freedom": "free", "valence": -1.0}),
     ]
     mols = [
-        Mol(**{"name": "water", "composition": "(W)1", "freedom": "solvent"}),
-        Mol(
-            **{
+        Mol.model_validate(
+            {"name": "water", "composition": "(W)1", "freedom": "solvent"}
+        ),
+        Mol.model_validate(
+            {
                 "name": "pol",
                 "composition": comp,
                 "freedom": "restricted",
                 "theta": theta,
             }
         ),
-        Mol(
-            **{
+        Mol.model_validate(
+            {
                 "name": "ionp",
                 "composition": "(P)1",
                 "freedom": "free",
                 "phibulk": ionic_strength,
             }
         ),
-        Mol(
-            **{
+        Mol.model_validate(
+            {
                 "name": "ionm",
                 "composition": "(M)1",
                 "freedom": "free",
