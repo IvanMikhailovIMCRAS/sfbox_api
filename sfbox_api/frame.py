@@ -60,10 +60,13 @@ class Frame:
             p = paar.split()
             if len(p) != 2:
                 raise ValueError(f"Frame: incorrect key in chi_list: {paar}")
-            if p[0] not in list_mons_names:
-                raise ValueError(f"Frame: unknown type monomer in chi_list: {p[0]}")
-            if p[1] not in list_mons_names:
-                raise ValueError(f"Frame: unknown type monomer in chi_list: {p[1]}")
+            
+            # TODO how share for states
+            
+            # if p[0] not in list_mons_names:
+            #     raise ValueError(f"Frame: unknown type monomer in chi_list: {p[0]}")
+            # if p[1] not in list_mons_names:
+            #     raise ValueError(f"Frame: unknown type monomer in chi_list: {p[1]}")
 
     def __str__(self):
         result = ""
