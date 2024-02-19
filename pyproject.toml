@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "sfbox-api"
-version = "1.4.1"
+version = "1.4.2"
 description = "Application programming interface of the SFbox program"
 authors = ["Ivan Mikhailov <mikhailov.ivan.imc@gmail.com>"]
 readme = "README.md"

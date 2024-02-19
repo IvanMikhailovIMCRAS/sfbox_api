@@ -1,4 +1,5 @@
 from typing import Literal
+
 from .frame import Frame
 from .lattice import Lat
 from .molecule import Mol
@@ -48,22 +49,36 @@ def comb_brush(Nb: int, n: int, m: int, n_layers, sigma: float) -> Frame:
     return frame
 
 
-def barbwire(p: int, n: int, m: int, q: int, root: int, 
-             theta: float, chi: float, n_layers: int, 
-             geometry: Literal['flat','cylindrical','spherical']='flat') -> Frame:
+def barbwire(
+    p: int,
+    n: int,
+    m: int,
+    q: int,
+    root: int,
+    theta: float,
+    chi: float,
+    n_layers: int,
+    geometry: Literal["flat", "cylindrical", "spherical"] = "flat",
+) -> Frame:
     # validating parameters
-    if p < 1: raise ValueError("p < 1")
-    if n < 1: raise ValueError("n < 1")
-    if m < 2: raise ValueError("m < 2")
-    if q < 1: raise ValueError("q < 1")
-    if root < 1: raise ValueError("root < 1")
-    if n_layers < int(theta)+1: raise ValueError("n_layer < theta+1")
-    # setting composition 
+    if p < 1:
+        raise ValueError("p < 1")
+    if n < 1:
+        raise ValueError("n < 1")
+    if m < 2:
+        raise ValueError("m < 2")
+    if q < 1:
+        raise ValueError("q < 1")
+    if root < 1:
+        raise ValueError("root < 1")
+    if n_layers < int(theta) + 1:
+        raise ValueError("n_layer < theta+1")
+    # setting composition
     if root == 1:
         root_block = f"(X)1"
     else:
         root_block = f"(X)1(A){root-1}"
-    
+
     if q == 1:
         side_block = f"[(A){n}]"
     else:
@@ -88,8 +103,13 @@ def barbwire(p: int, n: int, m: int, q: int, root: int,
             {"name": "Water", "composition": "(W)1", "freedom": "solvent"}
         ),
         Mol.model_validate(
-            {"name": "pol", "composition": comp, "freedom": "restricted", "theta": theta}
-        )
+            {
+                "name": "pol",
+                "composition": comp,
+                "freedom": "restricted",
+                "theta": theta,
+            }
+        ),
     ]
     # Flory-Hugggins interactions
     chi_list = {"X W": chi, "A W": chi, "G W": chi}
