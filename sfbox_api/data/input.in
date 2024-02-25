@@ -18,7 +18,7 @@ mon : G : chi - W : 0
 mol : Water : freedom : solvent 
 mol : Water : composition : (W)1 
 mol : pol : freedom : restricted 
-mol : pol : composition : (X)1([(A)100])2((A)100([(A)100])2)2(A)99(G)1 
+mol : pol : composition : (X)1(A)1([(A)100])2((A)100([(A)100])2)2(A)99(G)1 
 mol : pol : theta : 5.0 
 newton : isaac : method : pseudohessian 
 newton : isaac : tolerance : 1e-07 

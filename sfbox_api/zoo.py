@@ -75,7 +75,7 @@ def barbwire(
         raise ValueError("n_layer < theta+1")
     # setting composition
     if root == 1:
-        root_block = f"(X)1"
+        root_block = "(X)1"
     else:
         root_block = f"(X)1(A){root-1}"
 

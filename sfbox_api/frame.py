@@ -1,4 +1,5 @@
 import os
+import shutil
 from typing import Dict, List, Optional
 
 import numpy as np
@@ -38,6 +39,7 @@ class Frame:
         self.profile_labels: Optional[List[str]] = []
         self.stats_labels: Optional[List[str]] = []
         self.text = ""
+        self.folder = ""
 
         list_mons_names = []
         for m in mons:
@@ -106,51 +108,91 @@ class Frame:
                 result += f"newton : {self.newton.name} : {p[0]} : {str(p[1])} \n"
 
         result += "output : filename.pro : type : profiles \n"
-        result += "output : filename.pro : template : profile.tmp \n"
+        result += f"output : filename.pro : template : {os.path.join(self.folder, 'profile.tmp')} \n"
         result += "output : filename.kal : type : kal \n"
-        result += "output : filename.kal : template : kal.tmp \n"
+        result += f"output : filename.kal : template : {os.path.join(self.folder, 'kal.tmp')} \n"
         result += self.text
         result += "\n"
         result += "start"
         return result
 
-    def run(self):
+    def run(self, folder: str = ""):
         self.profile = dict()
         self.stats = dict()
         self.profile_labels = []
         self.stats_labels = []
+        target = TARGET_DIR
+        self.folder = folder
 
-        f = open(f"{os.path.join(TARGET_DIR, 'info.txt')}", "w")
+        if folder:
+            folder_path = os.path.join(HOME_DIR, self.folder)
+            f = open(f"{os.path.join(HOME_DIR, folder+'info.txt')}", "w")
+            f.close()
+            if os.path.exists(folder_path):
+                raise TimeoutError(f"folder {self.folder} already exists")
+            else:
+                os.mkdir(folder_path)
+                target = folder_path
+                if os.name != "nt":
+                    shutil.copy(os.path.join(TARGET_DIR, "sfbox"), folder_path)
+                else:
+                    shutil.copy(os.path.join(TARGET_DIR, "sfbox.exe"), folder_path)
+                    shutil.copy(
+                        os.path.join(TARGET_DIR, "libgcc_s_dw2-1.dll"), folder_path
+                    )
+                    shutil.copy(
+                        os.path.join(TARGET_DIR, "libstdc++-6.dll"), folder_path
+                    )
+                    shutil.copy(os.path.join(TARGET_DIR, "pthreadGC2.dll"), folder_path)
+        else:
+            f = open(f"{os.path.join(target, 'info.txt')}", "w")
+            f.close()
+
+        f = open(f"{os.path.join(target, folder+'input.pro')}", "w")
         f.close()
-        f = open(f"{os.path.join(TARGET_DIR, 'input.pro')}", "w")
-        f.close()
-        with open(f"{os.path.join(TARGET_DIR, 'profile.tmp')}", "w") as f:
+
+        with open(f"{os.path.join(target, 'profile.tmp')}", "w") as f:
             f.writelines("mol : * : phi : profile \n")
             f.writelines("mon : * : phi : profile \n")
             f.writelines("state : * : phi : profile")
-        with open(f"{os.path.join(TARGET_DIR, 'kal.tmp')}", "w") as f:
+        with open(f"{os.path.join(target, 'kal.tmp')}", "w") as f:
             f.writelines("sys : * : free energ* : 1 \n")
             f.writelines("mol : * : ln(G* : 1)")
-        with open(f"{os.path.join(TARGET_DIR, 'input.in')}", "w") as f:
+        with open(f"{os.path.join(target, folder+'input.in')}", "w") as f:
             f.write(str(self))
-        os.chdir(TARGET_DIR)
+        if not folder:
+            os.chdir(target)
         if os.name != "nt":
             os.system(
-                f"{os.path.join(TARGET_DIR, 'sfbox')} {os.path.join(TARGET_DIR, 'input.in')} >> info.txt"
+                f"{os.path.join(target, 'sfbox')} {os.path.join(target, folder+'input.in')} >> {folder+'info.txt'}"
             )
         else:
             os.system(
-                f"{os.path.join(TARGET_DIR, 'sfbox.exe')} {os.path.join(TARGET_DIR, 'input.in')} >> info.txt"
+                f"{os.path.join(target, 'sfbox.exe')} {os.path.join(target, folder+'input.in')} >> {folder+'info.txt'}"
             )
-        with open(f"{os.path.join(TARGET_DIR, 'info.txt')}", "r") as f:
-            content = f.read()
+        if folder:
+            with open(f"{os.path.join(HOME_DIR, folder+'info.txt')}", "r") as f:
+                content = f.read()
+        else:
+            with open(f"{os.path.join(target, 'info.txt')}", "r") as f:
+                content = f.read()
         if "Problem solved" not in content:
-            os.chdir(HOME_DIR)
+            if not folder:
+                os.chdir(HOME_DIR)
             raise TimeoutError("Frame: Calculation process is ruined")
-        with open(f"{os.path.join(TARGET_DIR, 'input.pro')}", "r") as f:
-            lines = f.readlines()
+        if folder:
+            with open(f"{os.path.join(HOME_DIR, folder+'input.pro')}", "r") as f:
+                lines = f.readlines()
+        else:
+            with open(f"{os.path.join(target, 'input.pro')}", "r") as f:
+                lines = f.readlines()
         labels = lines[0].split()
-        pro_data = np.loadtxt(f"{os.path.join(TARGET_DIR, 'input.pro')}", skiprows=1).T
+        if folder:
+            pro_data = np.loadtxt(
+                f"{os.path.join(HOME_DIR, folder+'input.pro')}", skiprows=1
+            ).T
+        else:
+            pro_data = np.loadtxt(f"{os.path.join(target, 'input.pro')}", skiprows=1).T
         self.profile[labels[0]] = pro_data[0]
         self.profile_labels.append(labels[0])
         iter = 0
@@ -159,15 +201,24 @@ class Frame:
             self.profile[labels[iter]] = data
             self.profile_labels.append(labels[iter])
             iter += 2
-
-        with open(f"{os.path.join(TARGET_DIR, 'input.kal')}", "r") as f:
-            lines = f.readlines()
+        if folder:
+            with open(f"{os.path.join(HOME_DIR, folder+'input.kal')}", "r") as f:
+                lines = f.readlines()
+        else:
+            with open(f"{os.path.join(target, 'input.kal')}", "r") as f:
+                lines = f.readlines()
         self.stats_labels = lines[0].split("\t")
-        stats_data = np.loadtxt(
-            f"{os.path.join(TARGET_DIR, 'input.kal')}", skiprows=1
-        ).T
+        if folder:
+            stats_data = np.loadtxt(
+                f"{os.path.join(HOME_DIR, folder+'input.kal')}", skiprows=1
+            ).T
+        else:
+            stats_data = np.loadtxt(
+                f"{os.path.join(target, 'input.kal')}", skiprows=1
+            ).T
         iter = -1
         for stats in stats_data:
             iter += 1
             self.stats[self.stats_labels[iter]] = stats
-        os.chdir(HOME_DIR)
+        if not folder:
+            os.chdir(HOME_DIR)

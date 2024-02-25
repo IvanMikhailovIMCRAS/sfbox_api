@@ -1,6 +1,45 @@
 /home/ohm/pcodes/sfbox_api/sfbox_api/data/sfbox version 2.1.0.0 date: 2015-7913
 Checking inputfile /home/ohm/pcodes/sfbox_api/sfbox_api/data/input.in for errors
-Fatal error reading input file '/home/ohm/pcodes/sfbox_api/sfbox_api/data/input.in', in calculation number 1
-Error in composition '(X)1([(A)100])2((A)100([(A)100])2)2(A)99(G)1'
-The first linear fragment contains only one monomer.
+Warning
+An output file named 'input.pro' already exists, it will be overwritten after the calculation.
 
+Warning
+An output file named 'input.kal' already exists, it will be overwritten after the calculation.
+
+no errors found in /home/ohm/pcodes/sfbox_api/sfbox_api/data/input.in
+Here we go...
+iterate 200
+NEWTON has been notified.
+Residual error:
+Your guess:i= 0  6.94573e-01  |g|=9.76483e-01
+hessian scaling: 1.25e+00
+i= 1  3.62956e-01  |g|=7.69643e-01  alpha=1.25e+00
+i= 2  3.20755e-01  |g|=6.32562e-01  alpha=1.00e+00
+i= 3  3.44267e-01  |g|=7.19282e-01  alpha=1.00e+00
+i= 4  2.88049e-01  |g|=7.42488e-01  alpha=1.00e+00
+i= 5  2.43741e-01  |g|=5.10821e-01  alpha=1.00e+00
+i= 6  1.80485e-01  |g|=4.54341e-01  alpha=1.00e+00
+i= 7  2.60044e-01  |g|=7.26451e-01  alpha=1.00e+00
+i= 8  1.67811e-01  |g|=3.10132e-01  alpha=3.87e-01
+i= 9  9.60162e-02  |g|=3.19201e-01  alpha=5.70e-01
+i= 10  5.80588e-02  |g|=1.62742e-01  alpha=1.00e+00
+i= 11  4.33499e-02  |g|=1.26546e-01  alpha=1.00e+00
+i= 12  3.51198e-02  |g|=1.36002e-01  alpha=1.00e+00
+i= 13  2.02482e-02  |g|=7.23592e-02  alpha=1.00e+00
+i= 14  9.04237e-03  |g|=2.59981e-02  alpha=1.00e+00
+i= 15  7.24850e-03  |g|=1.85512e-02  alpha=1.00e+00
+i= 16  1.95642e-03  |g|=5.34513e-03  alpha=5.25e-01
+i= 17  9.45554e-04  |g|=2.05601e-03  alpha=1.00e+00
+i= 18  2.80736e-04  |g|=9.64318e-04  alpha=6.76e-01
+i= 19  1.63419e-04  |g|=6.64189e-04  alpha=1.00e+00
+i= 20  3.67904e-05  |g|=1.19373e-04  alpha=1.00e+00
+i= 21  1.76706e-05  |g|=5.31845e-05  alpha=1.00e+00
+i= 22  7.46661e-06  |g|=1.88997e-05  alpha=1.00e+00
+i= 23  2.45845e-06  |g|=5.29246e-06  alpha=1.00e+00
+i= 24  1.04407e-06  |g|=3.81802e-06  alpha=1.00e+00
+i= 25  3.72372e-07  |g|=1.14956e-06  alpha=1.00e+00
+i= 26  1.08780e-07  |g|=1.99197e-07  alpha=1.00e+00
+i= 27  3.39570e-08  |g|=7.42505e-08  alpha=1.00e+00
+Newton done.
+Problem solved.
+/home/ohm/pcodes/sfbox_api/sfbox_api/data/sfbox has finished.
