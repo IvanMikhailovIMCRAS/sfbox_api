@@ -107,10 +107,12 @@ class Frame:
             if p[1] and p[1] != self.newton.name:
                 result += f"newton : {self.newton.name} : {p[0]} : {str(p[1])} \n"
 
-        result += "output : filename.pro : type : profiles \n"
-        result += f"output : filename.pro : template : {os.path.join(self.folder, 'profile.tmp')} \n"
-        result += "output : filename.kal : type : kal \n"
-        result += f"output : filename.kal : template : {os.path.join(self.folder, 'kal.tmp')} \n"
+        result += (
+            f"output : {os.path.join(self.folder, 'input.pro')} : type : profiles \n"
+        )
+        result += f"output : {os.path.join(self.folder, 'input.pro')} : template : {os.path.join(self.folder, 'profile.tmp')} \n"
+        result += f"output : {os.path.join(self.folder, 'input.kal')} : type : kal \n"
+        result += f"output : {os.path.join(self.folder, 'input.kal')} : template : {os.path.join(self.folder, 'kal.tmp')} \n"
         result += self.text
         result += "\n"
         result += "start"
@@ -126,8 +128,8 @@ class Frame:
 
         if folder:
             folder_path = os.path.join(HOME_DIR, self.folder)
-            f = open(f"{os.path.join(HOME_DIR, folder+'info.txt')}", "w")
-            f.close()
+            # f = open(f"{os.path.join(HOME_DIR, folder+'info.txt')}", "w")
+            # f.close()
             if os.path.exists(folder_path):
                 raise TimeoutError(f"folder {self.folder} already exists")
             else:
@@ -144,11 +146,10 @@ class Frame:
                         os.path.join(TARGET_DIR, "libstdc++-6.dll"), folder_path
                     )
                     shutil.copy(os.path.join(TARGET_DIR, "pthreadGC2.dll"), folder_path)
-        else:
-            f = open(f"{os.path.join(target, 'info.txt')}", "w")
-            f.close()
+        f = open(f"{os.path.join(target, 'info.txt')}", "w")
+        f.close()
 
-        f = open(f"{os.path.join(target, folder+'input.pro')}", "w")
+        f = open(f"{os.path.join(target, 'input.pro')}", "w")
         f.close()
 
         with open(f"{os.path.join(target, 'profile.tmp')}", "w") as f:
@@ -158,41 +159,28 @@ class Frame:
         with open(f"{os.path.join(target, 'kal.tmp')}", "w") as f:
             f.writelines("sys : * : free energ* : 1 \n")
             f.writelines("mol : * : ln(G* : 1)")
-        with open(f"{os.path.join(target, folder+'input.in')}", "w") as f:
+        with open(f"{os.path.join(target, 'input.in')}", "w") as f:
             f.write(str(self))
         if not folder:
             os.chdir(target)
         if os.name != "nt":
             os.system(
-                f"{os.path.join(target, 'sfbox')} {os.path.join(target, folder+'input.in')} >> {folder+'info.txt'}"
+                f"{os.path.join(target, 'sfbox')} {os.path.join(target, 'input.in')} >> {os.path.join(target, 'info.txt')}"
             )
         else:
             os.system(
-                f"{os.path.join(target, 'sfbox.exe')} {os.path.join(target, folder+'input.in')} >> {folder+'info.txt'}"
+                f"{os.path.join(target, 'sfbox.exe')} {os.path.join(target, 'input.in')} >> {os.path.join(target, 'info.txt')}"
             )
-        if folder:
-            with open(f"{os.path.join(HOME_DIR, folder+'info.txt')}", "r") as f:
-                content = f.read()
-        else:
-            with open(f"{os.path.join(target, 'info.txt')}", "r") as f:
-                content = f.read()
+        with open(f"{os.path.join(target, 'info.txt')}", "r") as f:
+            content = f.read()
         if "Problem solved" not in content:
             if not folder:
                 os.chdir(HOME_DIR)
             raise TimeoutError("Frame: Calculation process is ruined")
-        if folder:
-            with open(f"{os.path.join(HOME_DIR, folder+'input.pro')}", "r") as f:
-                lines = f.readlines()
-        else:
-            with open(f"{os.path.join(target, 'input.pro')}", "r") as f:
-                lines = f.readlines()
+        with open(f"{os.path.join(target, 'input.pro')}", "r") as f:
+            lines = f.readlines()
         labels = lines[0].split()
-        if folder:
-            pro_data = np.loadtxt(
-                f"{os.path.join(HOME_DIR, folder+'input.pro')}", skiprows=1
-            ).T
-        else:
-            pro_data = np.loadtxt(f"{os.path.join(target, 'input.pro')}", skiprows=1).T
+        pro_data = np.loadtxt(f"{os.path.join(target, 'input.pro')}", skiprows=1).T
         self.profile[labels[0]] = pro_data[0]
         self.profile_labels.append(labels[0])
         iter = 0
@@ -201,21 +189,10 @@ class Frame:
             self.profile[labels[iter]] = data
             self.profile_labels.append(labels[iter])
             iter += 2
-        if folder:
-            with open(f"{os.path.join(HOME_DIR, folder+'input.kal')}", "r") as f:
-                lines = f.readlines()
-        else:
-            with open(f"{os.path.join(target, 'input.kal')}", "r") as f:
-                lines = f.readlines()
+        with open(f"{os.path.join(target, 'input.kal')}", "r") as f:
+            lines = f.readlines()
         self.stats_labels = lines[0].split("\t")
-        if folder:
-            stats_data = np.loadtxt(
-                f"{os.path.join(HOME_DIR, folder+'input.kal')}", skiprows=1
-            ).T
-        else:
-            stats_data = np.loadtxt(
-                f"{os.path.join(target, 'input.kal')}", skiprows=1
-            ).T
+        stats_data = np.loadtxt(f"{os.path.join(target, 'input.kal')}", skiprows=1).T
         iter = -1
         for stats in stats_data:
             iter += 1

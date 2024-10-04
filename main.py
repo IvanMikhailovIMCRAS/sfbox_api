@@ -6,5 +6,5 @@ if __name__ == "__main__":
     frame.run("123")
     print(frame.profile_labels)
 
-    bw = barbwire(p=3, n=100, m=100, q=2, root=2, theta=5, chi=0, n_layers=200)
-    print(bw.profile_labels)
+    # bw = barbwire(p=3, n=100, m=100, q=2, root=2, theta=5, chi=0, n_layers=200)
+    # print(bw.profile_labels)
