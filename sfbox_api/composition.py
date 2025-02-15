@@ -2,8 +2,6 @@ from typing import List
 
 import sympy
 
-from .type_parser import types_parser
-
 
 class Composition:
     LIB = set("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789()[]")
@@ -35,8 +33,8 @@ class Composition:
 
     def _mol_mass(self) -> int:
         formula = self.topological_script
-        bead_types = types_parser(formula)
-        for s in set(bead_types):
+        unwanted_symbols = self.types_list() + ["["] + ["]"]
+        for s in unwanted_symbols:
             formula = formula.replace(s, "")
         formula = formula.replace("()", "+")
         formula = formula.replace("(", "+(")

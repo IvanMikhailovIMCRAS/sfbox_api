@@ -10,5 +10,5 @@ if __name__ == "__main__":
     bw = barbwire(p=3, n=100, m=100, q=2, root=2, theta=5, chi=0, n_layers=200)
     print(bw.profile_labels)
     # Calculation of the polymerization degree
-    C = Composition("(x2)1(c2)5(e2)1")
+    C = Composition("(x2)1(c5)5(c5)2(e2)1")
     print(C.N)
