@@ -1,7 +1,6 @@
 from typing import Literal, Optional
 
-from pydantic import (BaseModel, ValidationError, field_validator,
-                      model_validator)
+from pydantic import BaseModel, ValidationError, field_validator, model_validator
 
 # import warnings
 # warnings.filterwarnings('ignore')

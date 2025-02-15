@@ -26,6 +26,7 @@ def test_types_list(script: str, expected_result: List[str]) -> None:
         ("(x)1(a)1[(a)1[(a)1](a)1](a)1[(a)1](a)1", 8),
         ("(a)1(g)2[(a1)1(g)2[(a)1(g)2](a)1(g)2](a1)1(g)2[(a)1(g)2](a)1(g)2", 21),
         ("(x)1(a)2(([(a)2])3)2(a)10", 25),
+        ("(x2)1(c2)5(e2)1", 7),
     ],
 )
 def test_mol_mass(script: str, expected_result: int) -> None:
