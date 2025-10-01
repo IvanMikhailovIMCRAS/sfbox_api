@@ -156,6 +156,7 @@ class Frame:
             f.writelines("mol : * : phi : profile \n")
             f.writelines("mon : * : phi : profile \n")
             f.writelines("state : * : phi : profile")
+            f.writelines("sys : * : potential : profile")
         with open(f"{os.path.join(target, 'kal.tmp')}", "w") as f:
             f.writelines("sys : * : free energ* : 1 \n")
             f.writelines("mol : * : ln(G* : 1)")
